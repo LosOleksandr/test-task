@@ -9,9 +9,11 @@ import {
   REGISTER,
 } from "redux-persist"
 import persistedThemeReducer from "./slices/themeSlice"
+import carsReducer from "./slices/carsSlice"
 
 export const store = configureStore({
   reducer: {
+    cars: carsReducer,
     theme: persistedThemeReducer,
   },
   middleware: (getDefaultMiddleware) =>

@@ -15,14 +15,14 @@ const Header = () => {
           <li>
             <NavLink
               className="hover:text-blue-500 transition-colors"
-              to={"catalogue"}
+              to={"catalog"}
             >
-              Catalogue
+              Catalog
             </NavLink>
           </li>
         </ul>
       </nav>
-        <ThemeToggler className="absolute top-1/2 right-10 -translate-y-1/2" />
+      <ThemeToggler className="absolute top-1/2 right-10 -translate-y-1/2" />
     </div>
   )
 }

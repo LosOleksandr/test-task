@@ -1,9 +1,9 @@
 import Home from "./Home"
-import Catalogue from "./Catalogue"
+import Catalog from "./Catalog"
 
 const pages = {
   Home,
-  Catalogue,
+  Catalog,
 }
 
 export default pages
