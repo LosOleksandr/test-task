@@ -1,18 +1,19 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
 import Car from "../../types/car"
 import { AxiosError } from "axios"
 
-
 const instance = axios.create({
-  baseURL: "https://654517125a0b4b04436d9c36.mockapi.io/",
+  baseURL: "https://654585f4fe036a2fa9545f05.mockapi.io/",
 })
 
-export const getCars = createAsyncThunk<Car[], void>(
+export const getCars = createAsyncThunk<Car[], { page: number; limit: number }>(
   "cars/getCars",
-  async (_, { rejectWithValue }) => {
+  async (params, { rejectWithValue }) => {
     try {
-      const response = await instance.get("car")
+      const response = await instance.get("cars", {
+        params,
+      })
       if (response.status !== 200) {
         throw new Error(response.data)
       }

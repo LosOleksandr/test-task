@@ -4,39 +4,49 @@ import { getCars } from "../thunk/carsThunk"
 import { RootState } from "../store"
 
 interface ICarsInitialState {
-  cars: Car[] | null
+  cars: Car[]
   isLoading: boolean
   error: unknown
+  page: number
 }
 
 const initialState: ICarsInitialState = {
   cars: [],
   isLoading: false,
   error: null,
+  page: 1,
 }
 
 export const carsSlice = createSlice({
   name: "cars",
   initialState,
-  reducers: {},
+  reducers: {
+    pageIncrement: (state) => {
+      state.page += 1
+    },
+    pageReset: (state) => {
+      state.page = 1
+      state.cars = []
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getCars.pending, (state) => {
-      state.cars = null
       state.isLoading = true
       state.error = null
     })
     builder.addCase(
       getCars.fulfilled,
       (state, action: PayloadAction<Car[]>) => {
-        state.cars = action.payload
-        state.error = null
         state.isLoading = false
+        state.cars =
+          state.page === 1 ? action.payload : [...state.cars, ...action.payload]
+        state.error = null
       },
     )
     builder.addCase(
       getCars.rejected,
       (state, action: PayloadAction<unknown>) => {
-        state.cars = null
+        state.cars = []
         state.isLoading = false
         state.error = action.payload
       },
@@ -44,5 +54,6 @@ export const carsSlice = createSlice({
   },
 })
 
+export const { pageIncrement, pageReset } = carsSlice.actions
 export const selectCars = (state: RootState) => state.cars
 export default carsSlice.reducer
