@@ -8,13 +8,16 @@ const Header = () => {
       <nav className="flex justify-center">
         <ul className="flex gap-4 text-blue-300 font-semibold ">
           <li>
-            <NavLink className="hover:text-blue-500 transition-colors" to={"/"}>
+            <NavLink
+              className="hover:text-blue-500 aria-[current=page]:text-blue-500 transition-colors"
+              to={"/"}
+            >
               Home
             </NavLink>
           </li>
           <li>
             <NavLink
-              className="hover:text-blue-500 transition-colors"
+              className="hover:text-blue-500 aria-[current=page]:text-blue-500 active:text-blue-500 transition-colors"
               to={"catalog"}
             >
               Catalog
