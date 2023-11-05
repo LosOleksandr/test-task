@@ -13,7 +13,7 @@ const ThemeToggler = ({ className }: { className: string }) => {
 
   return (
     <button
-      className={`text-inherit hover:text-blue-500 ${className}`}
+      className={`text-inherit hover:text-blue-500 transition-colors ${className}`}
       onClick={changeTheme}
     >
       {theme === "light" ? <IconMoon /> : <IconSun />}

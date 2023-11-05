@@ -5,6 +5,7 @@ import { RootState } from "../store"
 
 interface ICarsInitialState {
   cars: Car[]
+  favorite: Car[]
   isLoading: boolean
   error: unknown
   page: number
@@ -12,6 +13,7 @@ interface ICarsInitialState {
 
 const initialState: ICarsInitialState = {
   cars: [],
+  favorite: [],
   isLoading: false,
   error: null,
   page: 1,
@@ -27,6 +29,16 @@ export const carsSlice = createSlice({
     pageReset: (state) => {
       state.page = 1
       state.cars = []
+    },
+    handleFavoriteCars: (state, action) => {
+      const isFavorite = state.favorite.map(
+        (car) => car.id === action.payload.id,
+      )
+
+      if (isFavorite) {
+      }
+
+      state.favorite.push(action.payload)
     },
   },
   extraReducers: (builder) => {

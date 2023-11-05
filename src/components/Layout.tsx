@@ -1,13 +1,14 @@
-import React, { useEffect } from "react"
+import React, { Suspense } from "react"
 import Header from "./Header"
 import { Outlet } from "react-router-dom"
 import { useAppSelector } from "../app/hooks"
 import { selectTheme } from "../app/slices/themeSlice"
+import Loader from "./Loader"
 
 const Layout = () => {
   const theme = useAppSelector(selectTheme)
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark")
     } else {
@@ -18,7 +19,9 @@ const Layout = () => {
   return (
     <div>
       <Header />
-      <Outlet />
+      <React.Suspense fallback={<Loader />}>
+        <Outlet />
+      </React.Suspense>
     </div>
   )
 }

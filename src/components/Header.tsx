@@ -4,12 +4,12 @@ import ThemeToggler from "./ThemeToggler"
 
 const Header = () => {
   return (
-    <div className="py-6 border-b relative">
+    <div className="py-6 border-b border-zinc-400 relative">
       <nav className="flex justify-center">
-        <ul className="flex gap-4 text-blue-300 font-semibold ">
+        <ul className="flex gap-4 font-semibold ">
           <li>
             <NavLink
-              className="hover:text-blue-500 aria-[current=page]:text-blue-500 transition-colors"
+              className=" aria-[current=page]:text-blue-500 transition-colors"
               to={"/"}
             >
               Home
@@ -17,10 +17,18 @@ const Header = () => {
           </li>
           <li>
             <NavLink
-              className="hover:text-blue-500 aria-[current=page]:text-blue-500 active:text-blue-500 transition-colors"
+              className=" aria-[current=page]:text-blue-500  transition-colors"
               to={"catalog"}
             >
               Catalog
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className=" aria-[current=page]:text-blue-500  transition-colors"
+              to={"favorite"}
+            >
+              Favorite
             </NavLink>
           </li>
         </ul>
