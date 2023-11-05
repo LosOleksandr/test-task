@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
 import Car from "../../types/car"
 import { AxiosError } from "axios"
+import { RootState } from "../store"
 
 const instance = axios.create({
   baseURL: "https://654585f4fe036a2fa9545f05.mockapi.io/",
@@ -9,7 +10,8 @@ const instance = axios.create({
 
 export const getCars = createAsyncThunk<Car[], { page: number; limit: number }>(
   "cars/getCars",
-  async (params, { rejectWithValue }) => {
+  async (params, thunkApi) => {
+    const { cars } = thunkApi.getState() as RootState
     try {
       const response = await instance.get("cars", {
         params,
@@ -20,7 +22,7 @@ export const getCars = createAsyncThunk<Car[], { page: number; limit: number }>(
       return response.data
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
-        return rejectWithValue(error.message)
+        return thunkApi.rejectWithValue(error.message)
       }
     }
   },

@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom"
-import pages from "../pages"
 import Layout from "../components/Layout"
 
 const router = createBrowserRouter([
@@ -8,12 +7,31 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: "/",
-        element: <pages.Home />,
+        index: true,
+        async lazy() {
+          let Home = await import("../pages/Home")
+          return {
+            Component: Home.default,
+          }
+        },
       },
       {
         path: "/catalog",
-        element: <pages.Catalog />,
+        async lazy() {
+          let Catalog = await import("../pages/Catalog")
+          return {
+            Component: Catalog.default,
+          }
+        },
+      },
+      {
+        path: "/favorite",
+        async lazy() {
+          let Favorite = await import("../pages/Favorite")
+          return {
+            Component: Favorite.default,
+          }
+        },
       },
     ],
   },

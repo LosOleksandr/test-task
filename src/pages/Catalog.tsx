@@ -1,9 +1,10 @@
-import React from "react"
-import CarList from "../components/CarList"
+import React, { Suspense } from "react"
+
+const CarList = React.lazy(() => import("../components/CarList"))
 
 const Catalog = () => {
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
       <CarList />
     </div>
   )
