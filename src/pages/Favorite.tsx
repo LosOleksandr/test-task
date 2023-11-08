@@ -1,4 +1,3 @@
-import React from "react"
 import { useAppSelector } from "../app/hooks"
 import { selectCars } from "../app/slices/carsSlice"
 import CarList from "../components/CarList"
@@ -7,7 +6,6 @@ import { NavLink } from "react-router-dom"
 
 const Favorite = () => {
   const { favorite } = useAppSelector(selectCars)
-  console.log("favorite: ", favorite)
 
   return (
     <Section>

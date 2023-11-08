@@ -26,7 +26,6 @@ const CarItem = ({ car }: TCatItem) => {
   } = car
 
   const [isOpen, setIsOpen] = React.useState(false)
-  console.log("isOpen: ", isOpen)
   const dispatch = useAppDispatch()
   const { favorite } = useAppSelector(selectCars)
   const [isFavorite, setIsFavorite] = React.useState(false)
@@ -55,7 +54,6 @@ const CarItem = ({ car }: TCatItem) => {
 
   const handleFavorite = async (car: Car) => {
     dispatch(handleFavoriteCars(car))
-    console.log(favorite)
   }
 
   useEffect(() => {
