@@ -15,4 +15,5 @@ export default interface Car {
   address: string
   rentalConditions: string
   mileage: number
+  isFavorite: boolean
 }

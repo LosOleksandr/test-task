@@ -1,12 +1,20 @@
-import React, { Suspense } from "react"
+import React from "react"
+import { useAppSelector } from "../app/hooks"
+import { selectCars } from "../app/slices/carsSlice"
+import Section from "../components/Section"
+import "react-loading-skeleton/dist/skeleton.css"
+import SkeletonWrapper from "../components/Skeleton"
 
 const CarList = React.lazy(() => import("../components/CarList"))
 
 const Catalog = () => {
+  const { isLoading, cars } = useAppSelector(selectCars)
+
   return (
-    <div className="max-w-7xl mx-auto">
-      <CarList />
-    </div>
+    <Section>
+      {isLoading && <SkeletonWrapper />}
+      <CarList shouldDisplay={true} cars={cars} />
+    </Section>
   )
 }
 

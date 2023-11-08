@@ -8,13 +8,20 @@ const instance = axios.create({
   baseURL: "https://654585f4fe036a2fa9545f05.mockapi.io/",
 })
 
-export const getCars = createAsyncThunk<Car[], { page: number; limit: number }>(
-  "cars/getCars",
-  async (params, thunkApi) => {
-    const { cars } = thunkApi.getState() as RootState
+export const getCars = createAsyncThunk<Car[], void>(
+  "cars/getCarsByMake",
+  async (_, thunkApi) => {
+    const {
+      cars: { page, filter, limit },
+    } = thunkApi.getState() as RootState
+
     try {
       const response = await instance.get("cars", {
-        params,
+        params: {
+          page,
+          limit,
+          filter,
+        },
       })
       if (response.status !== 200) {
         throw new Error(response.data)

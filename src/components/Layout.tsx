@@ -1,4 +1,4 @@
-import React, { Suspense } from "react"
+import React from "react"
 import Header from "./Header"
 import { Outlet } from "react-router-dom"
 import { useAppSelector } from "../app/hooks"

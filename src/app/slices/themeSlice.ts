@@ -21,6 +21,7 @@ export const themeSlice = createSlice({
     },
   },
 })
+
 const persistConfig = {
   key: "root",
   storage,
